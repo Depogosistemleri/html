@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepoGo - Profesyonel Depo Yönetim Sistemi</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --text-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('images/depogo-banner.jpg') center/cover no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h3 {
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--secondary-color);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        /* Spinner for form submission */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .submit-btn-wrapper {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Depo<span>Go</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#features">Özellikler</a></li>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Depo Yönetiminde Yeni Nesil Çözüm</h1>
+            <p>DepoGo ile stok sayımı ve sipariş işlemlerinizi profesyonel ve hızlı bir şekilde yönetin.</p>
+            <a href="#contact" class="btn">Bizimle İletişime Geçin</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">DepoGo Özellikleri</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Hızlı Depo Sayımı</h3>
+                    <p>Gelişmiş barkod okuma teknolojisi ile depo sayımlarınızı hızlı ve hatasız gerçekleştirin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Sipariş Yönetimi</h3>
+                    <p>Siparişlerinizi tek bir platformdan kolayca takip edin ve yönetin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobil Erişim</h3>
+                    <p>İster ofiste ister sahada, tüm verilerinize her an her yerden erişin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>DepoGo Hakkında</h2>
+                    <p>DepoGo, modern işletmelerin depo ve envanter yönetim ihtiyaçlarını karşılamak için geliştirilmiş profesyonel bir yazılım çözümüdür.</p>
+                    <p>Kullanıcı dostu arayüzü ve güçlü özellikleriyle, işletmenizin stok ve sipariş süreçlerini optimize ederek zaman ve maliyet tasarrufu sağlar.</p>
+                    <p>DepoGo, küçük ve orta ölçekli işletmelerden kurumsal şirketlere kadar her boyuttaki işletmeye uyarlanabilir çözümler sunar.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/depogo-ekran.jpg" alt="DepoGo Ekran Görüntüsü" style="max-width: 100%; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            
+            <div id="successAlert" class="alert alert-success">
+                Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.
+            </div>
+            
+            <div id="errorAlert" class="alert alert-error">
+                Mesajınız gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+            </div>
+            
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <p>DepoGo hakkında daha fazla bilgi almak, demo talep etmek veya sorularınız için bizimle iletişime geçebilirsiniz.</p>
+                    <p>📧 E-posta: depogosistemleri@gmail.com</p>
+                    <p>🏢 Adres: İstanbul, Türkiye</p>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Adınız</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta Adresiniz</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <div class="submit-btn-wrapper">
+                            <button type="submit" class="btn">Gönder</button>
+                            <div id="submitSpinner" class="spinner"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DepoGo. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="#">Ana Sayfa</a>
+                <a href="#features">Özellikler</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#contact">İletişim</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Form Submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successAlert = document.getElementById('successAlert');
+            const errorAlert = document.getElementById('errorAlert');
+            const submitSpinner = document.getElementById('submitSpinner');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Hide any existing alerts
+                successAlert.style.display = 'none';
+                errorAlert.style.display = 'none';
+                
+                // Show loading spinner
+                submitSpinner.style.display = 'block';
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value || 'DepoGo Web Sitesi İletişim Formu',
+                    message: document.getElementById('message').value
+                };
+                
+                // Send data using EmailJS or similar service
+                // This is a simulation since we need a real email service
+                setTimeout(function() {
+                    // For demonstration, let's simulate a successful submission
+                    // In a real scenario, you would use a service like EmailJS, Formspree, or your backend
+                    
+                    // Example with EmailJS (you would need to include their library and setup an account)
+                    // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                    //    .then(function(response) {
+                    //        submitSpinner.style.display = 'none';
+                    //        successAlert.style.display = 'block';
+                    //        contactForm.reset();
+                    //    }, function(error) {
+                    //        submitSpinner.style.display = 'none';
+                    //        errorAlert.style.display = 'block';
+                    //    });
+                    
+                    // Simulation:
+                    submitSpinner.style.display = 'none';
+                    
+                    // Show success message (in real situation, we'd check for success from API)
+                    successAlert.style.display = 'block';
+                    
+                    // Clear the form
+                    contactForm.reset();
+                    
+                    // Log what would be sent (for demonstration)
+                    console.log('Form data that would be sent:', formData);
+                    
+                    // In 5 seconds, hide the success message
+                    setTimeout(function() {
+                        successAlert.style.display = 'none';
+                    }, 5000);
+                    
+                }, 1500); // Simulate network delay
+            });
+        });
+    </script>
+</body>
+</html>
